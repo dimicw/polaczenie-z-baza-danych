@@ -18,7 +18,7 @@ mono_crash.*
 
 # Build results
 [Dd]ebug/
-!polaczenie-z-baza-danych/Zadanie4_DCW/Zadanie4_DCW/bin/Release/
+!Zadanie4_DCW/Zadanie4_DCW/bin/Release/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
