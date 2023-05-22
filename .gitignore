@@ -3,10 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# include Release folder
-polaczenie-z-baza-danych/Zadanie4_DCW/Zadanie4_DCW/bin/*
-!polaczenie-z-baza-danych/Zadanie4_DCW/Zadanie4_DCW/bin/Release/
-
 # User-specific files
 *.rsuser
 *.suo
