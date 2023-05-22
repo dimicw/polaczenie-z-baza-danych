@@ -175,8 +175,10 @@ namespace Zadanie4_DCW
             }
         }
 
+        //wczytanie zdjęcia 
         private void bWczytajZdjecieNowy_Click(object sender, EventArgs e)
         {
+            //okno dialogowe wyboru pliku obrazu
             OpenFileDialog ofd = new OpenFileDialog { Filter = "Image Files(*.bmp;*.jpg;*.gif)| *.bmp; *.jpg; *.gif" };
 
             if (ofd.ShowDialog() == DialogResult.OK)
