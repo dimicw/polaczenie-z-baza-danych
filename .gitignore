@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+polaczenie-z-baza-danych/Zadanie4_DCW/Zadanie4_DCW/bin/Release/*
