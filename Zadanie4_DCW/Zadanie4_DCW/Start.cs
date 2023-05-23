@@ -17,6 +17,7 @@ namespace Zadanie4_DCW
             InitializeComponent();
         }
 
+        // metoda otwierająca okno sklep wewnątrz okna głównego
         private void sklepToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Sklep sklep = new Sklep();
@@ -24,6 +25,7 @@ namespace Zadanie4_DCW
             sklep.Show();
         }
 
+        // metoda otwierająca okno produkt wewnątrz okna głównego
         private void produktToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Produkt produkt = new Produkt();

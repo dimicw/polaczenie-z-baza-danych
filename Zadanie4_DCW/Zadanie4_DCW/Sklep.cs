@@ -13,12 +13,12 @@ namespace Zadanie4_DCW
 
         private void Sklep_Load(object sender, EventArgs e)
         {
-            // TODO: Ten wiersz kodu wczytuje dane do tabeli 'zadanie4DataSet.sklep' . Możesz go przenieść lub usunąć.
+            // wczytanie danych z bazy do tabel
             this.sklepTableAdapter.Fill(this.zadanie4DataSet.sklep);
 
         }
 
-        //przycisk aktualizujący wartości dla wybranego wiersza
+        // metoda aktualizująca wartości dla wybranego wiersza
         private void bAktualizuj_Click(object sender, EventArgs e)
         {
             try
@@ -39,6 +39,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli sklep
                 sklepTableAdapter.Fill(zadanie4DataSet.sklep);
             }
             catch (Exception ex)
@@ -47,7 +48,7 @@ namespace Zadanie4_DCW
             }
         }
 
-        //przycisk usuwający wybrany wiersz (błąd jeśli sklep jest przypisany do produktu w tabeli produkt)
+        // metoda usuwająca wybrany wiersz (wyrzuca błąd jeśli sklep jest przypisany do produktu w tabeli produkt)
         private void bUsun_Click(object sender, EventArgs e)
         {
             try
@@ -66,6 +67,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli sklep
                 sklepTableAdapter.Fill(zadanie4DataSet.sklep);
             }
             catch (Exception ex)
@@ -74,7 +76,7 @@ namespace Zadanie4_DCW
             }
         }
 
-        //dodaje nowy wiersz do tabeli
+        // metoda dodająca nowy wiersz do tabeli
         private void bDodajNowy_Click(object sender, EventArgs e)
         {
             try
@@ -95,6 +97,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli sklep
                 sklepTableAdapter.Fill(zadanie4DataSet.sklep);
             }
             catch (Exception ex)
@@ -104,7 +107,7 @@ namespace Zadanie4_DCW
 
         }
 
-        //funkcja wywoływana przy zamknięciu, pozwala zaakceptować lub odrzucić aktualizacje wartości, dla których nie było indywidualnie wciśnięte "aktualizuj"
+        // metoda wywoływana przy zamknięciu, pozwala zaakceptować lub odrzucić aktualizacje wartości, dla których nie było indywidualnie wciśnięte "aktualizuj"
         private void Sklep_FormClosing(object sender, FormClosingEventArgs e)
         {
             try

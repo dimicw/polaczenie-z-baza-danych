@@ -17,13 +17,12 @@ namespace Zadanie4_DCW
 
         private void Produkt_Load(object sender, EventArgs e)
         {
-            // TODO: Ten wiersz kodu wczytuje dane do tabeli 'zadanie4DataSet.sklep' . Możesz go przenieść lub usunąć.
+            // wczytanie danych z bazy do tabel
             this.sklepTableAdapter.Fill(this.zadanie4DataSet.sklep);
-            // TODO: Ten wiersz kodu wczytuje dane do tabeli 'zadanie4DataSet.produkt' . Możesz go przenieść lub usunąć.
             this.produktTableAdapter.Fill(this.zadanie4DataSet.produkt);
         }
 
-        //usuwa wybrany wiersz
+        // metoda usuwająca wybrany wiersz
         private void bUsun_Click(object sender, EventArgs e)
         {
             try
@@ -42,6 +41,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli produkt
                 produktTableAdapter.Fill(zadanie4DataSet.produkt);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Zadanie4_DCW
             }
         }
 
-        //aktualizuje dane dla wybranego wiersza
+        // metoda aktualizująca dane dla wybranego wiersza
         private void bZapisz_Click(object sender, EventArgs e)
         {            
             try
@@ -72,6 +72,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli produkt
                 produktTableAdapter.Fill(zadanie4DataSet.produkt);
             }
             catch (Exception ex)
@@ -80,9 +81,10 @@ namespace Zadanie4_DCW
             }
         }
 
-        //wczytuje nowe zdjęcie z pliku 
+        // metoda wczytująca nowe zdjęcie z pliku (okno aktualizacji danych)
         private void bWczytajZdjecie_Click(object sender, EventArgs e)
         {
+            // okno dialogowe wyboru pliku obrazu
             OpenFileDialog ofd = new OpenFileDialog { Filter = "Image Files(*.bmp;*.jpg;*.gif)| *.bmp; *.jpg; *.gif" };
             string path = "";
 
@@ -96,7 +98,7 @@ namespace Zadanie4_DCW
         }
 
 
-        //funkcja wywoływana przy zamknięciu, pozwala zaakceptować lub odrzucić aktualizacje wartości, dla których nie było indywidualnie wciśnięte "aktualizuj"
+        // metoda wywoływana przy zamknięciu, pozwala zaakceptować lub odrzucić aktualizacje wartości, dla których nie było indywidualnie wciśnięte "aktualizuj"
         private void Produkt_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -104,6 +106,7 @@ namespace Zadanie4_DCW
                 DialogResult dr = MessageBox.Show(
                     "Czy chcesz zapisać wprowadzone zmiany?", "Uwaga",
                     MessageBoxButtons.YesNo);
+
                 if (dr == DialogResult.Yes)
                     produktTableAdapter.Update(zadanie4DataSet.produkt);
             }
@@ -114,7 +117,7 @@ namespace Zadanie4_DCW
         }
 
 
-        //zmienia obraz w tablicę byte
+        // metoda konwertująca obraz na tablicę bajtów
         public static byte[] ImageToByte(string filePath)
         {
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
@@ -125,7 +128,7 @@ namespace Zadanie4_DCW
             return photo;
         }
 
-        //dodaje nowy wiersz do tabeli
+        // dodanie nowego wiersza do tabeli
         private void bAddNew_Click(object sender, EventArgs e)
         {
             try
@@ -134,7 +137,9 @@ namespace Zadanie4_DCW
                 {
                     con.Open();
                     string path = pbZdjecieNowy.Tag as string;
-                    if (path != "0")
+
+                    // z uwzględnieniem wybranego zdjęcia 
+                    if (path != "0")    
                     {
                         string sqlCommand = "INSERT INTO produkt (nazwa, cena, lokalizacja_id, zdjecie) VALUES(@Nazwa, @Cena, @Lokalizacja, @Zdjecie);";
 
@@ -150,7 +155,9 @@ namespace Zadanie4_DCW
                             MessageBox.Show("Wprowadzono dane", "Wprowadzono pomyślnie", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    else 
+
+                    // bez zdjęcia
+                    else    
                     {
                         string sqlCommand = "INSERT INTO produkt (nazwa, cena, lokalizacja_id) VALUES(@Nazwa, @Cena, @Lokalizacja);";
 
@@ -167,6 +174,7 @@ namespace Zadanie4_DCW
                     con.Close();
                 }
 
+                // odświeżenie danych w tabeli produkt
                 produktTableAdapter.Fill(zadanie4DataSet.produkt);
             }
             catch (Exception ex)
@@ -175,10 +183,10 @@ namespace Zadanie4_DCW
             }
         }
 
-        //wczytanie zdjęcia 
+        // metoda wczytująca nowe zdjęcie z pliku (okno nowego wpisu) 
         private void bWczytajZdjecieNowy_Click(object sender, EventArgs e)
         {
-            //okno dialogowe wyboru pliku obrazu
+            // okno dialogowe wyboru pliku obrazu
             OpenFileDialog ofd = new OpenFileDialog { Filter = "Image Files(*.bmp;*.jpg;*.gif)| *.bmp; *.jpg; *.gif" };
 
             if (ofd.ShowDialog() == DialogResult.OK)
